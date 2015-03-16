@@ -5,7 +5,7 @@
 
 from array import *
 from list_array import *
-
+import sys
 
 def makeTrie():
     
@@ -13,7 +13,8 @@ def makeTrie():
 	Words = []
     
     #read Alice in Wonderland
-	f = open("AliceInWonderland.txt","r");
+	fileName = raw_input("\nPlease enter the file name you want to open:")
+	f = open(str(fileName),"r");
 	lines = f.readlines();
     
 	for i in lines:
