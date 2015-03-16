@@ -3,6 +3,10 @@
 from math import sin, pi, cos, log
 from cmath import exp
 
+# need this for the generic case--this is a "good enough" function
+def factors(n):    
+    return set(reduce(list.__add__,([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+
 def FFT_dyadic(n, ca): 
   '''n -- number of integers
   ca -- input complex array 
@@ -28,22 +32,31 @@ def FFT_dyadic(n, ca):
 #  print fft
   return fft
 
-def FFT(ca):
-    ''' inputs the list and does error checking before the algorithm starts so that it doesn't need to run each time. Also switches between the dyadic and generic methods
-    outputs the list that the FFT_dyadic generates '''
-
-    n = len(ca)
-    if not ( int(log(n,2)) == log(n,2) ):
-      return None
-
-    return FFT_dyadic(n,ca)
+def FFT(n,ca):
+  ''' ca -- input complex array '''
+  fft = []
+  factor_list = sorted(list(factors(n))) # unless this is a very large number this isn't too bad
+  if(len(factor_list)==2):
+    fft = [0 for i in range(0,n)]
+    for i in range(0,n):
+      fft[i] =   sum([ ca[k]*exp(2.0*pi*1j/n*i*k).conjugate() for k in range(0,n) ] )
+  else:
+    r1 = factor_list[len(factor_list)/2] # do something smart here  n = r1*r2
+    r2 = n/r1
+    a = [ None for i in range(0,r1) ]
+    for k in range(0,r1):
+      a[k] = FFT(r2, ([ca[k+(r1*(r2-i))] for i in range(1,r2+1) ][::-1]) )
+    fft = [0 for i in range(0,n)]
+    for i in range(0,n):
+      fft[i] = sum( [ a[k][i%r2]*exp(2.0*pi*1j/n*i*k).conjugate() for k in range(0,r1) ] )
+  return fft
 
 def f(x):
   return sin(2*pi*3*x)+ sin(2*pi*x)
 
 if __name__=='__main__':
-  array = [ f(i/100.0) for i in range(0,2**10) ]
+  array = [ f(i/1000) for i in range(0,5555) ]
 
-  #print array
-  print FFT(array) # FIX THE TIME REVERSAL
+  print array
+  print FFT(len(array),array)
   
