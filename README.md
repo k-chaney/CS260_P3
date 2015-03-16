@@ -11,8 +11,8 @@ Problem 1: The python file has all the program coded and the output of the file 
 Problem 4: The supplement files for problem 4 are AliceInWonderland.txt and list_array.py. Make sure they have the same path as problem4.py does. First type:
             python problem4.py
 The output will explain how the code works and at the end of explanation, it will ask you to input the file name you want to evaluate the tries size. After you entered the name, press return button, and the size of the file will be shown in the next line. 
-For example, our text file is named "AliceInWonderland.txt". After I ran the program, I saw:
+For example, our text file is named "AliceInWonderland.txt". After you ran the program, you will see:
 ........ (explanation),
 The size of the trie of Alice In Wonderland is: 
-I input : AliceInWonderland.txt   and press enter
-Then I got the tries size.
+you can just input : AliceInWonderland.txt   and press enter
+Then you will the tries size.
