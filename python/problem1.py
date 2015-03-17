@@ -1,5 +1,3 @@
-#CS260-PA3-Problem1
-
 #!/usr/bin/env python
 
 
