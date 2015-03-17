@@ -30,10 +30,10 @@ LLP_TEST.o:
 	$(CC) -c $(CC_FLAGS) $(SRC)LLP_Test.cpp -o $(OBJS)$@
 
 Dijkstra_Test:
-	$(CC) $(SRC)Dijkstra_AM.cpp -o $(BUILD)$@
-	$(CC) $(SRC)Dijkstra_PoT.cpp -o $(BUILD)$@
-	$(BUILD)Dijkstra_AM
-	$(BUILD)Dijkstra_PoT
+	$(CC) $(SRC)Dijkstra_AM.cpp -o $(OBJS)$@
+	$(CC) $(SRC)Dijkstra_PoT.cpp -o $(OBJS)$@
+	$(OBJS)Dijkstra_AM
+	$(OBJS)Dijkstra_PoT
 
 # To remove generated files
 clean:
