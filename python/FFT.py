@@ -3,6 +3,8 @@
 from math import sin, pi, cos, log
 from cmath import exp
 
+from numpy.fft import fft
+
 # need this for the generic case--this is a "good enough" function
 def factors(n):    
     return set(reduce(list.__add__,([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
@@ -32,7 +34,7 @@ def FFT_dyadic(n, ca):
 #  print fft
   return fft
 
-def FFT(n,ca):
+def FFT_generic(n,ca):
   ''' ca -- input complex array '''
   fft = []
   factor_list = sorted(list(factors(n))) # unless this is a very large number this isn't too bad
@@ -45,7 +47,7 @@ def FFT(n,ca):
     r2 = n/r1
     a = [ None for i in range(0,r1) ]
     for k in range(0,r1):
-      a[k] = FFT(r2, ([ca[k+(r1*(r2-i))] for i in range(1,r2+1) ][::-1]) )
+      a[k] = FFT_generic(r2, ([ca[k+(r1*(r2-i))] for i in range(1,r2+1) ][::-1]) )
     fft = [0 for i in range(0,n)]
     for i in range(0,n):
       fft[i] = sum( [ a[k][i%r2]*exp(2.0*pi*1j/n*i*k).conjugate() for k in range(0,r1) ] )
@@ -57,6 +59,15 @@ def f(x):
 if __name__=='__main__':
   array = [ f(i/1000) for i in range(0,5555) ]
 
-  print array
-  print FFT(len(array),array)
-  
+  print "Function: sin(2*pi*3*x)+ sin(2*pi*x)"
+  print "Num data points: ", len(array)
+  mFFT = FFT_generic(len(array),array)
+  nfft = fft(array)
+  print "Generic deviation from numpy's fft: ", (sum( [mFFT[i]-nfft[i] for i in range(0,len(array))])/float(len(array)))
+
+  print "Function: sin(2*pi*3*x)+sin(2*pi*x"
+  array = [ f(i/1000) for i in range(0,2**16) ]
+  print "Num data points: ", len(array)
+  mFFT = FFT_dyadic(len(array),array)
+  nfft = fft(array)
+  print "Dyadic deviation from numpy's fft: ", (sum( [mFFT[i]-nfft[i] for i in range(0,len(array))])/float(len(array)))
