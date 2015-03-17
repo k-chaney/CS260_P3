@@ -16,3 +16,7 @@ For example, our text file is named "AliceInWonderland.txt". After you ran the p
 The size of the trie of Alice In Wonderland is: 
 you can just input : AliceInWonderland.txt   and press enter
 Then you will the tries size.
+
+Problem 5: This uses the Dijkstra algorithm on problem number six of review 2 using the adjacency representation of the graph. The file, Dijkstra_AM.cpp, when run will print out the final vector D[], P[], and S[] which match that answers provided in the Review 2 solutions. This Fills all nodes not connected to one another/themselves with the INF infinity constant I defined as 100 in the adjacency matrix.
+
+Problem 6: This uses the Dijkstra algorithm but in a more efficient manner, with a graph represented by an array of Nodes with adjacency lists and a partially ordered tree corresponding to the edge lengths. When run this program, Dijkstra_PoT, will print out the distances D[] for the minimal spanning graph. Note here, node 1 has distance 0 from itself unlike the previous implementation which has it at 100 (Infinity constant).
