@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+visited = []
+
 class T:
   val = None
   nextNodes = []
@@ -9,14 +11,18 @@ class T:
 
 
   # pre-order DFS listing
-  def depthFirstSearch( self, visited=[] ):
+  def depthFirstSearch( self, first=False ):
     # returns a depth first list
+    if first == True:
+      del visited[:]
+    if not self in visited:
+      visited.append(self)
     l = []
     for i in self.nextNodes:
       if not i in visited:
         visited.append(i)
-        l = l + i.depthFirstSearch(visited)
-    l = l + [self.val]
+        l = l + i.depthFirstSearch()
+    l = [self.val] + l
     return l
 
 def printListWithNums(l):
@@ -41,6 +47,6 @@ f.nextNodes = [d]
 
 
 print "pre-order DFS listing starting with 'a'"
-print printListWithNums(a.depthFirstSearch([]))
+print printListWithNums(a.depthFirstSearch(True))
 print "pre-order DFS listing starting with 'e'"
-print printListWithNums(e.depthFirstSearch([]))
+print printListWithNums(e.depthFirstSearch(True))

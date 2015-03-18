@@ -29,3 +29,7 @@ Then you will the tries size.
 Problem 5: This uses the Dijkstra algorithm on problem number six of review 2 using the adjacency representation of the graph. The file, Dijkstra_AM.cpp, when run will print out the final vector D[], P[], and S[] which match that answers provided in the Review 2 solutions. This Fills all nodes not connected to one another/themselves with the INF infinity constant I defined as 100 in the adjacency matrix.
 
 Problem 6: This uses the Dijkstra algorithm but in a more efficient manner, with a graph represented by an array of Nodes with adjacency lists and a partially ordered tree corresponding to the edge lengths. When run this program, Dijkstra_PoT, will print out the distances D[] for the minimal spanning graph. Note here, node 1 has distance 0 from itself unlike the previous implementation which has it at 100 (Infinity constant).
+
+Problem 8: This implements a depth first search printing out a numbered list. Simply run the p8.py program within the python folder. This has a sample graph that is depicted in Figure 6.28 of the class textbook.
+
+Problem 9: This implements the two recommended FFT algorithms and compares the output to the numpy implementation of fft, which is known to work. This program can be found in the python folder, simply run FFT.py. This output deviation between implemented algorithms and numpy's. Depending on the computer this may take a little bit to run. The results initially show deviation on the scale of 10^-28, which is small enough to be ignored.
