@@ -1,3 +1,5 @@
+#CS260-PA3-Problem1
+
 #!/usr/bin/env python
 
 
@@ -44,17 +46,19 @@ if __name__ == '__main__':
 	
 	# Insert data
 	print "\nInserting values"
-	d.insert('Key', 'Value')
-	d.insert('Other', 'Other value')
-	print "\nThe value of 'Key' is :", d['Key']
+	print "\n Insert 'Key1',which value is 3"
+	print "\n Insert 'Key2',which value is 4"
+	d.insert('Key1', '3')
+	d.insert('Key2', '4')
+	print "\nThe value of 'Key1' is :", d['Key1']
 	
 	# Delete data
-	print "\nDeleting 'Key' from dictionary\n"
-	d.delete('Key')
+	print "\nDeleting 'Key1' from dictionary\n"
+	d.delete('Key1')
 	try:
-		print "The value of 'Key' is :", d['Key']
+		print "The value of 'Key1' is :", d['Key1']
 	except:
-		print "Unable to find node; deletion successful."
+		print "Unable to find node; deletion successful"
 		
 	# Best case
 	print "\nThe best numerical constant for insertion and deletion is 1. In the given example, it has only one value in the dictionary, so the average number of probes required to make either a deletion or an insertion is 1\n"
