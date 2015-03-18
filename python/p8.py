@@ -2,20 +2,45 @@
 
 class T:
   val = None
-  nLevel = []
+  nextNodes = []
   def __init__( self, val=None, subT=[] ):
     self.val = val
-    self.nLevel = subT
+    self.nextNodes = subT
 
 
   # pre-order DFS listing
-  def depthFirstSearch( self ):
+  def depthFirstSearch( self, visited=[] ):
     # returns a depth first list
     l = []
-    for i in self.nLevel:
-      l = l + i.depthFirstSearch()
+    for i in self.nextNodes:
+      if not i in visited:
+        visited.append(i)
+        l = l + i.depthFirstSearch(visited)
     l = l + [self.val]
     return l
 
-myT = T(1,[T(2,[ T(4), T(5) ]),T(3) ])
-print myT.depthFirstSearch()
+def printListWithNums(l):
+  return "\n".join( [ " ".join([str(i),str(l[i])])  for i in range(0,len(l))] )
+
+
+# generation of nodes
+a=T('a')
+b=T('b')
+c=T('c')
+d=T('d')
+e=T('e')
+f=T('f')
+
+# link all nodes together to create graph
+a.nextNodes = [b,d,f]
+b.nextNodes = [c,f]
+c.nextNodes = [d]
+d.nextNodes = [b]
+e.nextNodes = [d,f]
+f.nextNodes = [d]
+
+
+print "pre-order DFS listing starting with 'a'"
+print printListWithNums(a.depthFirstSearch([]))
+print "pre-order DFS listing starting with 'e'"
+print printListWithNums(e.depthFirstSearch([]))
