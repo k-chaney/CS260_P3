@@ -4,8 +4,17 @@ Programming assignment 3 for CS260
 Assign yourself to 40 points worth of work. Don't take what has been claimed already. Make use of the folder structure that is in place. Update the readme with how to run your code. Python or C++ doesn't matter to me, just has to work.
 
 
-Problem 1: The python file has all the program coded and the output of the file will give the answer of the best constants and explanation. Just type:
-           python problem1.py
+Problem 1: The python file has all the program coded and the output of the file will give the answer of the best constants and explanation. Just type: python problem1.py  
+The output will show the testing data. Our example data and tables of running it are shown as follows:
+INSERTION
+Key        Value      Running Time
+Key1       3          1
+Key2       4          1
+Deletion - delete Key1
+Key        Value      Running Time
+Key1                  1
+Key2       4          1
+
 
 
 Problem 4: The supplement files for problem 4 are AliceInWonderland.txt and list_array.py. Make sure they have the same path as problem4.py does. First type:
